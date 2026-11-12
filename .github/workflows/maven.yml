@@ -1,11 +1,11 @@
 
-name: Selenium Maven Automation
+name: Selenium Test Automation
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   selenium-test:
@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Set up Chrome
+      - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
       - name: Run Selenium Tests
