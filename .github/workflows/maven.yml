@@ -3,9 +3,9 @@ name: Selenium Test Automation
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
-    branches: ["main"]
+    branches: [main]
 
 jobs:
   selenium-test:
@@ -15,15 +15,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
 
       - name: Run Selenium Tests
         run: mvn clean test
