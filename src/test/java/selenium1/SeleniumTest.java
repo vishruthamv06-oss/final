@@ -8,17 +8,30 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import java.io.File;
+import org.openqa.selenium.chrome.ChromeOptions;
 public class SeleniumTest {
 
     WebDriver driver;
 
     @BeforeMethod
-    public void setup() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.google.com");
+    public void setUp() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
+
+        driver = new ChromeDriver(options);
+
+        String page = new File("webpage/login.html")
+                .getAbsoluteFile()
+                .toURI()
+                .toString();
+
+        driver.get(page);
     }
+
 
     @Test
     public void testGoogleTitle() {
